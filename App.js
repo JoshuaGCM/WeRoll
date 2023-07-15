@@ -19,7 +19,7 @@ export default function App() {
 <NavigationContainer>
   <Tabs.Navigator>
     <Tabs.Screen name = "Map" component={Map}/>
-    <Tabs.Screen name = "List" component={EventFeed}/>
+    <Tabs.Screen name = "Events" component={EventFeed}/>
   </Tabs.Navigator>
 </NavigationContainer>
 
