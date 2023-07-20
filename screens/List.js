@@ -17,7 +17,7 @@ const Item = ({ name, details }) => (
 );
 
 // the filter
-const List = ({ searchPhrase, setCLicked, data }) => {
+const List = ({ searchPhrase, setClicked, data }) => {
   const renderItem = ({ item }) => {
     // when no input, show all
     if (searchPhrase === "") {
@@ -55,7 +55,7 @@ export default List;
 const styles = StyleSheet.create({
   list__container: {
     margin: 10,
-    height: "85%",
+    height: "-115%",
     width: "100%",
   },
   item: {

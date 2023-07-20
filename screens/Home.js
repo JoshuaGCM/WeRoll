@@ -6,8 +6,8 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from "react-native";
-import List from "../components/List";
-import SearchBar from "../components/SearchBar";
+import List from "./List";
+import SearchBar from "./SearchBar";
 
 const Home = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -18,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       const apiResponse = await fetch(
-        "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
+        ""
       );
       const data = await apiResponse.json();
       setFakeData(data);
@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.root}>
-      {!clicked && <Text style={styles.title}>Programming Languages</Text>}
+      {!clicked && <Text style={styles.title}>WeRoll</Text>}
       <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
   },
   title: {
     width: "100%",
-    marginTop: 20,
-    fontSize: 25,
+    marginTop: 0,
+    fontSize: 35,
     fontWeight: "bold",
-    marginLeft: "10%",
+    marginLeft: "1%",
   },
 });

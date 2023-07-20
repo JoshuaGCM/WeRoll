@@ -18,8 +18,8 @@ export default function App() {
   return (
 <NavigationContainer>
   <Tabs.Navigator>
-    <Tabs.Screen name = "Map" component={Map}/>
     <Tabs.Screen name = "Events" component={EventFeed}/>
+    <Tabs.Screen name = "Map" component={Map}/>
   </Tabs.Navigator>
 </NavigationContainer>
 
