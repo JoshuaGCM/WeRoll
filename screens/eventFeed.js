@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react';
 import { StyleSheet, View,Button } from 'react-native';
 import { Avatar, Card,} from 'react-native-paper';
 import App from "../App";
-import Home from "./Home";
+import Home from "./components/HomeSearchBar";
 import {Switch} from 'react-native';
 
 const Switche = () => {
@@ -24,7 +24,8 @@ const Switche = () => {
   };
 
 export default function EventFeed(){
-    return(
+    
+    return (
     
         <View style={styles.container}> 
             <Home/>
@@ -37,7 +38,7 @@ export default function EventFeed(){
       </Card>
         </View>
     )
-};
+      };
 
 const styles = StyleSheet.create({
     container: {

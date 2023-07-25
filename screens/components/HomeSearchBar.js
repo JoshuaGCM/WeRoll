@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.root}>
-      {!clicked && <Text style={styles.title}>WeRoll</Text>}
+      {!clicked && <Text style={styles.title}>SocialBlue</Text>}
       <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
