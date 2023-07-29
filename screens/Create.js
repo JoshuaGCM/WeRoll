@@ -3,8 +3,8 @@ import React,{useState,useEffect} from 'react';
 import { StyleSheet, View,Button,Pressable, TouchableOpacity } from 'react-native';
 import { Avatar, Card,} from 'react-native-paper';
 import {SafeAreaView, TextInput} from 'react-native';
-import Buttonn from "./components/button";
-import Buttonnn from "./components/button2";
+import Buttonn from "../components/button";
+import Buttonnn from "../components/button2";
 import { useForm, Controller } from 'react-hook-form';
 
 
