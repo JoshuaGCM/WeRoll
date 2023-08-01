@@ -7,13 +7,16 @@ import {
   Switch,
   FlatList,
   StatusBar,
+  Text
 } from "react-native";
 import { Avatar, Card } from "react-native-paper";
 import Home from "../components/HomeSearchBar";
 
-
-
 const baseUrl = "http://localhost:8080";
+
+const DATA = [{
+
+}]
 
 export default function EventFeed() {
   const [data, setData] = useState([]);
@@ -37,7 +40,14 @@ export default function EventFeed() {
   return (
     <View>
       <Home />
-      <Card style={styles.card1}>{console.log(data)}</Card>
+	  {data?.reverse().map(event=><Card style={styles.card1}>
+		<Text style={styles.setFontSizeThree}>{event.eventname}</Text>
+		<Text>{event.eventaddress}</Text>
+		<Text>{event.city}</Text>
+		<Text>{event.state}</Text>
+		<Text>{event.description}</Text>
+		<Text>{event.date}</Text>
+		</Card>)}
     </View>
   );
 }
@@ -52,20 +62,18 @@ const styles = StyleSheet.create({
   card1: {
     margin: 20,
     fontSize: 25,
-    height: 100,
+    height: 115,
     width: 350,
   },
   button1: {
     justifyContent: "flex-start",
   },
-  setFontSizeOne: {
-    fontSize: 15,
-  },
   setFontSizeTwo: {
     fontSize: 20,
   },
   setFontSizeThree: {
-    fontSize: 25,
+    fontSize: 20,
+	marginHorizontal: 60
   },
   setFontSizeFour: {
     fontSize: 40,
@@ -76,8 +84,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  container3: {
-    height: 10,
-    margin: 200,
-  },
+  title:{
+	margin: 10
+  }
 });
