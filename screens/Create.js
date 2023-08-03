@@ -1,12 +1,15 @@
-import { Text } from "react-native";
-import React,{useState,useEffect} from 'react';
-import { StyleSheet, View,Button,Pressable, TouchableOpacity } from 'react-native';
+
+import React,{useState,useEffect, Component} from 'react';
+import { StyleSheet, View, Platform, Button,Pressable, TouchableOpacity, Text, Image, SafeAreaView, TextInput, Alert } from 'react-native';
 import { Avatar, Card,} from 'react-native-paper';
-import {SafeAreaView, TextInput} from 'react-native';
 import Buttonn from "../components/button";
 import Buttonnn from "../components/button2";
 import { useForm, Controller } from 'react-hook-form';
-
+import axios from "axios";
+import { Picker } from "@react-native-picker/picker";
+import CategoryPicker from "../components/CategoryPicker";
+import * as ImagePicker from 'expo-image-picker';
+ const image1 = "add Ur link "
 
 const TextInputExample = () => {
     const [text, onChangeText] = React.useState('');
@@ -25,6 +28,7 @@ const TextInputExample = () => {
   
 
 export default function Create(){
+  const [pick, onChangePick] = useState(false);
     const [eventName, setEventName] = useState('');
     const [eventNumber, setEventNumber] = useState('');
     const [zipCode, setZipCode] = useState('');
@@ -34,12 +38,58 @@ export default function Create(){
     const [description, setDescription] = useState('');
     const [maxCapacity, setMaxCapacity] = useState('');
     const [date, setDate] = useState('');
-    const [categories, setCategories] = useState('')
+    const [categories, setCategories] = useState('');
+    const [picture, setPicture] = useState('');
+    const [image, setImage] = useState(null);
+
+    const baseUrl = "http://localhost:8080";
+
+    const [selectedLanguage, setSelectedLanguage] = useState();
 
     const ButtonPress = () => {
-        console.log(eventName, categories, eventNumber, maxCapacity, zipCode, date, city, state, phoneNumber, description)
-    }
+        async function pushData() {
+          try {
+            await axios
+              .post(`${baseUrl}/events/create`, {
+                eventname: eventName,
+                eventaddress: eventNumber,
+                zipcode: zipCode,
+                city: city,
+                state: state,
+                phonenumber: phoneNumber,
+                description: description,
+                maxcapacity: maxCapacity,
+                date: date,
+                category: categories,
+                picture: picture
+              })
+              .then((response) => {
+                console.log(response.data);
+              })
+          } catch (err) {
+            console.log(err);
+          }
+        }
+        pushData()
+      };
     
+      const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.canceled) {
+          setImage(result.assets[0].uri);
+        }
+      };
+    
+
     return(
         <View>
             <View>
@@ -51,16 +101,22 @@ export default function Create(){
                   value={eventName}
                   placeholder="Name of Event"
                   keyboardType="numeric"
-        
                 />
+                {/* Touchable on change should show picker logicv error here */}
+                <TouchableOpacity onPress={() => {
+                  onChangePick(!pick)
+                  onPress(<CategoryPicker/>)
+                  console.log(pick);
+                {pick && <CategoryPicker/>}
+                }}
+               >
                 
-                <TextInput
-                  style={styles.input10}
-                  onChangeText={setCategories}
-                  value={categories}
-                  placeholder="Categories"
-                  keyboardType="numeric"
-                />
+                 <Text
+                 style={styles.input10}
+                 >
+                  Category
+                 </Text>
+                </TouchableOpacity>
 
                 <TextInput
                   style={styles.input2}
@@ -122,7 +178,8 @@ export default function Create(){
                   keyboardType="numeric"
                 />
 
-                 <Buttonnn/>
+      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
                 <TouchableOpacity style={styles.button1} onPress={ButtonPress}>
                     <Text style={styles.buttontext}> Create Event </Text>
                 </TouchableOpacity>
@@ -234,6 +291,18 @@ button1:{
     letterSpacing: 0.25,
     color: 'white',
   },
+  button2:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'black',
+    width:400,
+    margin: 15,
+    marginTop: 80
+  },
 input10:{
         height: 40,
         width: 400,
@@ -241,5 +310,6 @@ input10:{
         borderWidth: 2,
         padding: 10,
         fontSize: 15,
-}
+},
+
 });

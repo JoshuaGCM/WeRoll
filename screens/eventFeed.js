@@ -7,19 +7,22 @@ import {
   Switch,
   FlatList,
   StatusBar,
-  Text
+  Text,
+  ScrollView,
+  alwaysBounceHorizontal,
+  TouchableOpacity,
+  Image
 } from "react-native";
 import { Avatar, Card } from "react-native-paper";
 import Home from "../components/HomeSearchBar";
+import { blue, white } from "react-native-ios-kit/src/styles/colors";
+import BookPhoto from "../components/pictures";
 
 const baseUrl = "http://localhost:8080";
 
-const DATA = [{
-
-}]
-
 export default function EventFeed() {
   const [data, setData] = useState([]);
+  const [selectedLanguage, setSelectedLanguage] = useState();
 
   useEffect(() => {
     async function getData() {
@@ -40,6 +43,10 @@ export default function EventFeed() {
   return (
     <View>
       <Home />
+	  <Text style={styles.HeaderNearYou}>Near You</Text>
+	  <ScrollView
+	  horizontal={true}
+	  >
 	  {data?.reverse().map(event=><Card style={styles.card1}>
 		<Text style={styles.setFontSizeThree}>{event.eventname}</Text>
 		<Text>{event.eventaddress}</Text>
@@ -47,7 +54,37 @@ export default function EventFeed() {
 		<Text>{event.state}</Text>
 		<Text>{event.description}</Text>
 		<Text>{event.date}</Text>
+		<TouchableOpacity style={styles.button1}>
+			<Text style={styles.RegisterText}>Register</Text>
+		</TouchableOpacity>
 		</Card>)}
+		</ScrollView>
+
+		<Text style={styles.HeaderNearYou}>
+			Suggested
+		</Text>
+
+		<ScrollView
+		horizontal={true}
+		>
+
+		{data?.reverse().map(event=><Card style={styles.card1}>
+		<Text style={styles.setFontSizeThree}>{event.eventname}</Text>
+		<Text>{event.eventaddress}</Text>
+		<Text>{event.city}</Text>
+		<Text>{event.state}</Text>
+		<Text>{event.description}</Text>
+		<Text>{event.date}</Text>
+		<TouchableOpacity style={styles.button1}>
+			<Text style={styles.RegisterText}>Register</Text>
+		</TouchableOpacity>
+		</Card>)}
+
+		<Image source={{uri: 'https://images.pexels.com/photos/46274/pexels-photo-46274.jpeg?cs=srgb&dl=pexels-caio-46274.jpg&fm=jpg'}}/>
+
+		</ScrollView>
+
+		
     </View>
   );
 }
@@ -62,10 +99,10 @@ const styles = StyleSheet.create({
   card1: {
     margin: 20,
     fontSize: 25,
-    height: 115,
+    height: 155,
     width: 350,
   },
-  button1: {
+  button: {
     justifyContent: "flex-start",
   },
   setFontSizeTwo: {
@@ -86,5 +123,25 @@ const styles = StyleSheet.create({
   },
   title:{
 	margin: 10
+  },
+  ScrollView1: {
+	alwaysBounceHorizontal: true
+  },
+  button1:{
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    backgroundColor: 'blue',
+    width:200,
+	marginLeft: 70,
+	borderRadius: 50
+  },
+  RegisterText:{
+	color: white,
+	marginLeft: 40
+  },
+  HeaderNearYou:{
+	fontSize: 20,
+	marginLeft: 20,
+	marginTop: -20
   }
 });
