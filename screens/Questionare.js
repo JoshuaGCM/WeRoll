@@ -33,6 +33,9 @@ export default function Question(){
             />
             <Text> {checked}</Text>
 
+
+
+
         </View>
     )
 }

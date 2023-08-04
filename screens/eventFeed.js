@@ -11,12 +11,15 @@ import {
   ScrollView,
   alwaysBounceHorizontal,
   TouchableOpacity,
-  Image
+  Image,
+  SafeAreaView
 } from "react-native";
 import { Avatar, Card } from "react-native-paper";
 import Home from "../components/HomeSearchBar";
 import { blue, white } from "react-native-ios-kit/src/styles/colors";
 import BookPhoto from "../components/pictures";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import infopage from "./infopage";
 
 const baseUrl = "http://localhost:8080";
 
@@ -27,7 +30,7 @@ export default function EventFeed() {
   useEffect(() => {
     async function getData() {
       try {
-        await axios
+ axios
           .get(`${baseUrl}/events/browse`)
           .then((response) => {
             setData(response.data);
@@ -41,8 +44,10 @@ export default function EventFeed() {
   }, []);
 
   return (
+
     <View>
-      <Home />
+			<SafeAreaView>
+      <Home style={styles.eventFeedPage}/>
 	  <Text style={styles.HeaderNearYou}>Near You</Text>
 	  <ScrollView
 	  horizontal={true}
@@ -54,7 +59,9 @@ export default function EventFeed() {
 		<Text>{event.state}</Text>
 		<Text>{event.description}</Text>
 		<Text>{event.date}</Text>
-		<TouchableOpacity style={styles.button1}>
+		<TouchableOpacity style={styles.button1}
+		
+		>
 			<Text style={styles.RegisterText}>Register</Text>
 		</TouchableOpacity>
 		</Card>)}
@@ -75,7 +82,9 @@ export default function EventFeed() {
 		<Text>{event.state}</Text>
 		<Text>{event.description}</Text>
 		<Text>{event.date}</Text>
-		<TouchableOpacity style={styles.button1}>
+		<TouchableOpacity style={styles.button1}
+	
+		>
 			<Text style={styles.RegisterText}>Register</Text>
 		</TouchableOpacity>
 		</Card>)}
@@ -84,8 +93,9 @@ export default function EventFeed() {
 
 		</ScrollView>
 
-		
+		</SafeAreaView>	
     </View>
+
   );
 }
 
@@ -95,6 +105,8 @@ const styles = StyleSheet.create({
     flex: -1,
     justifyContent: "center",
     alignItems: "center",
+	width:"100%",
+	height:"100%",
   },
   card1: {
     margin: 20,
@@ -143,5 +155,9 @@ const styles = StyleSheet.create({
 	fontSize: 20,
 	marginLeft: 20,
 	marginTop: -20
+  },
+  eventFeedPage: {
+	width:"100%",
+	height:"100%",
   }
 });
