@@ -43,8 +43,8 @@ const Interest = ({navigation}) => {
         <Text style={styles.Header1}> Select Your Intrests</Text>
         <View style={styles.form}>
         {options.map((option) => (
-        <TouchableOpacity key={option.id} style={{ flexDirection: 'row', alignItems: 'center'}} onPress={() => handleCheckboxToggle(option.id)}>
-        <Text>{option.label}</Text>
+        <TouchableOpacity key={option.id} style={styles.button1} onPress={() => handleCheckboxToggle(option.id)}>
+        <Text style={styles.textforrsubmit}>{option.label}</Text>
         <Checkbox
         status={selectedCheckboxes[option.id] ? 'checked' : 'unchecked'}
         style={{width: 1000}}
@@ -71,16 +71,15 @@ const Interest = ({navigation}) => {
             fontSize: 30,
             marginHorizontal: 65
             },
-            Radio1:{
-            color: 'blue'
-            },
             button1:{
             paddingVertical: 10,
             paddingHorizontal: 30,
             backgroundColor: 'blue',
             width:200,
             marginLeft: 70,
-            borderRadius: 50
+            borderRadius: 50,
+            flexDirection: 'row',
+            alignItems: 'center'
             },
             form:{
             padding: 50,
@@ -90,10 +89,6 @@ const Interest = ({navigation}) => {
             fontSize: 20,
             marginLeft: 45
         }
-
-
     });
-    
-    
     
         export default Interest;

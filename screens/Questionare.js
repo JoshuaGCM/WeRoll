@@ -45,47 +45,50 @@ export default function Question({navigation}) {
       <Text style={styles.Header1}> Whats Your Gender</Text>
       <View style={styles.form}>
         <TouchableOpacity
-          styles={{ flex: 1 }}
+          style={styles.buttonmale}
           value="Male"
           status={checked === "Male" ? "checked" : "unchecked"}
           onPress={() => setChecked("Male")}
         >
-          <Text>Male</Text>
+          <Text></Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          styles={{ flex: 1 }}
+          style={styles.buttonfemale}
           value="Female"
           status={checked === "Female" ? "checked" : "unchecked"}
           onPress={() => setChecked("Female")}
         >
-          <Text>Female</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          styles={{ flex: 1 }}
+          style={styles.buttonNonBinary}
           value="Non-Binary"
           status={checked === "Non-Binary" ? "checked" : "unchecked"}
           onPress={() => setChecked("Non-Binary")}
         >
-          <Text>Non-Binary</Text>
+          <Text></Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          styles={{ flex: 1 }}
+          style={styles.buttonOther}
           value="Other"
           status={checked === "Other" ? "checked" : "unchecked"}
           onPress={() => setChecked("Other")}
         >
-          <Text>Other</Text>
+          <Text></Text>
         </TouchableOpacity>
 
         <Text>Option Chosen:{checked}</Text>
       </View>
       
-        <TouchableOpacity style={styles.button1} onPress={nextButton}>
+        <TouchableOpacity style={styles.nextButton} onPress={nextButton}>
             <Text style={styles.textfornext} >Next</Text>
         </TouchableOpacity>
+        <Text style={styles.maleText}>Male</Text>
+        <Text style={styles.femaleText}>Female</Text>
+        <Text style={styles.nonbinaryText}>Non-Binary</Text>
+        <Text style={styles.otherText}>Other</Text>
       </View>
     
   );
@@ -96,15 +99,49 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginHorizontal: 65,
   },
-  Radio1: {
-    color: "blue",
+  buttonmale: {
+    paddingVertical: 7,
+    paddingHorizontal: 15,
+    backgroundColor: "blue",
+    width: 10,
+    marginLeft: -10,
+    borderRadius: 50,
+    marginBottom: 50
+
   },
-  button1: {
+  buttonfemale: {
+    paddingVertical: 14,
+    paddingHorizontal: 15,
+    backgroundColor: "blue",
+    width: 10,
+    marginLeft: -10,
+    borderRadius: 50,
+    marginBottom: 50
+  },
+  buttonNonBinary: {
+    paddingVertical: 7,
+    paddingHorizontal: 15,
+    backgroundColor: "blue",
+    width: 10,
+    marginLeft: -10,
+    borderRadius: 50,
+    marginBottom: 50
+  },
+  buttonOther: {
+    paddingVertical: 7,
+    paddingHorizontal: 15,
+    backgroundColor: "blue",
+    width: 10,
+    marginLeft: -10,
+    borderRadius: 50,
+    marginBottom: 50
+  },
+  nextButton: {
     paddingVertical: 10,
     paddingHorizontal: 30,
     backgroundColor: "blue",
     width: 200,
-    marginLeft: 70,
+    marginLeft: 100,
     borderRadius: 50,
   },
   form: {
@@ -114,5 +151,27 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     marginLeft: 50,
+    
   },
+  maleText:{
+    fontSize: 20,
+    marginLeft: 80,
+    marginTop: -223,
+    marginBottom: 50
+  },
+  femaleText:{
+    fontSize: 20,
+    marginLeft: 80,
+    marginBottom: 50
+  },
+  nonbinaryText:{
+    fontSize: 20,
+    marginLeft: 80,
+    marginBottom: 50
+  },
+  otherText:{
+    fontSize: 20,
+    marginLeft:80,
+    marginBottom: 50
+  }
 });
