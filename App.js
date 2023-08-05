@@ -10,6 +10,7 @@ import Create from "./screens/Create";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Question from "./screens/Questionare";
 import { blue, red } from "react-native-ios-kit/src/styles/colors";
+import Questions from "./screens/Questions";
 // import Home from './screens/components/HomeSearchBar';
 const Tabs = createBottomTabNavigator();
 
@@ -24,7 +25,7 @@ export default function App() {
 				<Tabs.Screen name="Home" component={EventFeed} />
 				<Tabs.Screen name="Create" component={Create} />
 				<Tabs.Screen name="Map" component={Map} />
-				<Tabs.Screen name="Questions" component={Question} />
+				<Tabs.Screen name="Questions" component={Questions} />
 			</Tabs.Navigator>
 		</NavigationContainer>
 	);
