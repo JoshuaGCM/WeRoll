@@ -178,7 +178,9 @@ export default function Create(){
                   keyboardType="numeric"
                 />
 
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      <TouchableOpacity onPress={pickImage} style={styles.ImageButton}>
+       <Text style={styles.ImageText}>Add An Image (Optional)</Text>
+        </TouchableOpacity>
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
                 <TouchableOpacity style={styles.button1} onPress={ButtonPress}>
                     <Text style={styles.buttontext}> Create Event </Text>
@@ -282,7 +284,8 @@ button1:{
     backgroundColor: 'black',
     width:300,
     margin: 65,
-    marginTop: 20
+    marginTop: 100,
+
   },
   buttontext: {
     fontSize: 16,
@@ -311,5 +314,21 @@ input10:{
         padding: 10,
         fontSize: 15,
 },
+ImageButton:{
+  paddingVertical: 1,
+  paddingHorizontal: 20,
+  backgroundColor: 'blue',
+  width:200,
+  marginLeft: 70,
+  borderRadius: 50,
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginTop: 1
+
+},
+ImageText:{
+  fontSize: 20,
+  color: 'white',
+}
 
 });

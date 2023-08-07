@@ -19,11 +19,11 @@ import Home from "../components/HomeSearchBar";
 import { blue, white } from "react-native-ios-kit/src/styles/colors";
 import BookPhoto from "../components/pictures";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import infopage from "./infopage";
+import infopage from "./InfoPage";
 
 const baseUrl = "http://localhost:8080";
 
-export default function EventFeed() {
+export default function EventFeed({navigation}) {
   const [data, setData] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState();
 
@@ -43,6 +43,10 @@ export default function EventFeed() {
 	getData();
   }, []);
 
+  const registerButton = () => {
+    navigation.navigate("InfoPage")
+  }
+
   return (
 
     <View>
@@ -60,7 +64,7 @@ export default function EventFeed() {
 		<Text>{event.description}</Text>
 		<Text>{event.date}</Text>
 		<TouchableOpacity style={styles.button1}
-		
+		onPress={registerButton}
 		>
 			<Text style={styles.RegisterText}>Register</Text>
 		</TouchableOpacity>
