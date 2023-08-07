@@ -1,4 +1,4 @@
-
+// this is a sample comment
 import React,{useState,useEffect, Component} from 'react';
 import { StyleSheet, View, Platform, Button,Pressable, TouchableOpacity, Text, Image, SafeAreaView, TextInput, Alert } from 'react-native';
 import { Avatar, Card,} from 'react-native-paper';
