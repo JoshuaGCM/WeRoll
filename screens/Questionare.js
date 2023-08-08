@@ -41,7 +41,7 @@ export default function Question({ navigation }) {
 	};
 
 	return (
-		<View>
+		<View style={{ backgroundColor: "white", height: "100%" }}>
 			<Text style={styles.Header1}> Whats Your Gender</Text>
 			<View style={styles.form}>
 				<TouchableOpacity
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 	buttonmale: {
 		paddingVertical: 7,
 		paddingHorizontal: 15,
-		backgroundColor: "blue",
+		backgroundColor: "#2EB8DB",
 		width: 10,
 		marginLeft: -10,
 		borderRadius: 50,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 	buttonfemale: {
 		paddingVertical: 14,
 		paddingHorizontal: 15,
-		backgroundColor: "blue",
+		backgroundColor: "#2EB8DB",
 		width: 10,
 		marginLeft: -10,
 		borderRadius: 50,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 	buttonNonBinary: {
 		paddingVertical: 7,
 		paddingHorizontal: 15,
-		backgroundColor: "blue",
+		backgroundColor: "#2EB8DB",
 		width: 10,
 		marginLeft: -10,
 		borderRadius: 50,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 	buttonOther: {
 		paddingVertical: 7,
 		paddingHorizontal: 15,
-		backgroundColor: "blue",
+		backgroundColor: "#2EB8DB",
 		width: 10,
 		marginLeft: -10,
 		borderRadius: 50,
@@ -134,10 +134,11 @@ const styles = StyleSheet.create({
 	nextButton: {
 		paddingVertical: 10,
 		paddingHorizontal: 30,
-		backgroundColor: "blue",
+		backgroundColor: "#3570F9",
 		width: 300,
+		height: 45,
 		marginLeft: 50,
-		borderRadius: 15,
+		borderRadius: 12,
 	},
 	form: {
 		padding: 50,
