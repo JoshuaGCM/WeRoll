@@ -100,14 +100,14 @@ export default function Create() {
 	};
 
 	return (
-		<View>
-			<View>
+		<View style={{ backgroundColor: "white", height: "100%" }}>
+			<View style={{ marginTop:100}}>
 				<TextInput
 					style={styles.input}
 					onChangeText={setEventName}
 					value={eventName}
 					placeholder="Name of Event"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 				{/* Touchable on change should show picker logicv error here */}
 				<TouchableOpacity
@@ -127,7 +127,7 @@ export default function Create() {
 					onChangeText={setEventNumber}
 					value={eventNumber}
 					placeholder="Location Address"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 
 				<TextInput
@@ -135,7 +135,7 @@ export default function Create() {
 					onChangeText={setMaxCapacity}
 					value={maxCapacity}
 					placeholder="Max Capacity"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 
 				<TextInput
@@ -143,35 +143,35 @@ export default function Create() {
 					onChangeText={setZipCode}
 					value={zipCode}
 					placeholder="Zip Code"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 				<TextInput
 					style={styles.input4}
 					onChangeText={setCity}
 					value={city}
 					placeholder="City"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 				<TextInput
 					style={styles.input5}
 					onChangeText={setState}
 					value={state}
 					placeholder="State"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 				<TextInput
 					style={styles.input6}
 					onChangeText={setPhoneNumber}
 					value={phoneNumber}
 					placeholder="Phone Number"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 				<TextInput
 					style={styles.input7}
 					onChangeText={setDescription}
 					value={description}
 					placeholder="Description"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 
 				<TextInput
@@ -179,7 +179,7 @@ export default function Create() {
 					onChangeText={setDate}
 					value={date}
 					placeholder="Date"
-					keyboardType="numeric"
+					keyboardType="default"
 				/>
 
 				<TouchableOpacity onPress={pickImage} style={styles.ImageButton}>
@@ -205,6 +205,7 @@ const styles = StyleSheet.create({
 		padding: 10,
 		fontSize: 15,
 		marginTop: 10,
+    borderRadius:10
 	},
 	input2: {
 		height: 50,
@@ -213,6 +214,7 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		padding: 10,
 		fontSize: 15,
+    borderRadius: 10
 	},
 	input3: {
 		height: 50,
@@ -221,6 +223,7 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		padding: 10,
 		fontSize: 15,
+    borderRadius: 10
 	},
 	input4: {
 		height: 50,
@@ -231,6 +234,7 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		marginTop: -55,
 		margin: 250,
+    borderRadius:10
 	},
 	input5: {
 		height: 50,
@@ -240,6 +244,7 @@ const styles = StyleSheet.create({
 		padding: 10,
 		fontSize: 15,
 		marginTop: -220,
+    borderRadius: 10
 	},
 	input6: {
 		height: 50,
@@ -250,6 +255,7 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		marginTop: -65,
 		margin: 250,
+    borderRadius:10
 	},
 	input7: {
 		height: 130,
@@ -259,6 +265,8 @@ const styles = StyleSheet.create({
 		padding: 10,
 		fontSize: 15,
 		marginTop: -220,
+    borderRadius:10,
+    paddingBottom: 90
 	},
 	input8: {
 		height: 50,
@@ -267,6 +275,7 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		padding: 10,
 		fontSize: 15,
+    borderRadius:10
 	},
 	input9: {
 		height: 50,
@@ -277,18 +286,20 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		marginTop: -405,
 		margin: 250,
+    borderRadius:10
 	},
 	button1: {
 		alignItems: "center",
 		justifyContent: "center",
 		paddingVertical: 12,
 		paddingHorizontal: 32,
-		borderRadius: 4,
+		borderRadius: 10,
 		elevation: 3,
-		backgroundColor: "black",
-		width: 300,
+		backgroundColor: "#3570F9",
+		width: 180,
 		margin: 65,
-		marginTop: 100,
+		marginTop: 10,
+    marginLeft: 130
 	},
 	buttontext: {
 		fontSize: 16,
@@ -302,7 +313,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		paddingVertical: 12,
 		paddingHorizontal: 32,
-		borderRadius: 4,
+		borderRadius: 10,
 		elevation: 3,
 		backgroundColor: "black",
 		width: 400,
@@ -316,17 +327,18 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		padding: 10,
 		fontSize: 15,
+    borderRadius:10
 	},
 	ImageButton: {
-		paddingVertical: 1,
-		paddingHorizontal: 20,
-		backgroundColor: "blue",
-		width: 200,
-		marginLeft: 70,
-		borderRadius: 50,
+		paddingVertical: 4,
+		paddingHorizontal: 30,
+		backgroundColor: "#72A4EE",
+		width: 275,
+		marginLeft: 80,
+		borderRadius: 30,
 		flexDirection: "row",
 		alignItems: "center",
-		marginTop: 1,
+		marginTop: 100,
 	},
 	ImageText: {
 		fontSize: 20,
