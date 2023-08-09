@@ -54,12 +54,26 @@ const getTabBarIcon = (name) = ({size, color }) => {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="home" color={color} size={50} />
           ),
         }}
       />
-				<Tabs.Screen name="Create" component={Create} />
-				<Tabs.Screen name="Questions" component={Questions} />
+				<Tabs.Screen name="Create"        component={Create}
+        options={{
+          tabBarLabel: 'plus-circle',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="plus-circle" color={color} size={50} />
+          ),
+        }}
+      />
+				<Tabs.Screen name="Questions" component={Questions}
+        options={{
+          tabBarLabel: 'account-circle',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account-circle" color={color} size={50} />
+          ),
+        }}
+      />
 			</Tabs.Navigator>
 		</NavigationContainer>
 	);
