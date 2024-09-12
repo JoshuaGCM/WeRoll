@@ -3,88 +3,134 @@ import axios from "axios";
 import {
   StyleSheet,
   View,
-  Button,
-  Switch,
-  FlatList,
-  StatusBar,
+  Image,
   Text,
   ScrollView,
-  alwaysBounceHorizontal,
   TouchableOpacity,
-  Image
+  Modal,
+  Button,
 } from "react-native";
-import { Avatar, Card } from "react-native-paper";
+import { Card } from "react-native-paper";
 import Home from "../components/HomeSearchBar";
-import { blue, white } from "react-native-ios-kit/src/styles/colors";
-import BookPhoto from "../components/pictures";
+import { white } from "react-native-ios-kit/src/styles/colors";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const baseUrl = "http://localhost:8080";
 
-export default function EventFeed() {
+export default function EventFeed({ navigation }) {
   const [data, setData] = useState([]);
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     async function getData() {
       try {
-        await axios
-          .get(`${baseUrl}/events/browse`)
-          .then((response) => {
-            setData(response.data);
-          })
+        const response = await axios.get(`${baseUrl}/events/browse`);
+        setData(response.data);
       } catch (err) {
         console.log(err);
       }
     }
 
-	getData();
+    getData();
   }, []);
 
+  const registerButton = (event) => {
+    setSelectedEvent(event);
+    setIsModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
-    <View>
-      <Home />
-	  <Text style={styles.HeaderNearYou}>Near You</Text>
-	  <ScrollView
-	  horizontal={true}
-	  >
-	  {data?.reverse().map(event=><Card style={styles.card1}>
-		<Text style={styles.setFontSizeThree}>{event.eventname}</Text>
-		<Text>{event.eventaddress}</Text>
-		<Text>{event.city}</Text>
-		<Text>{event.state}</Text>
-		<Text>{event.description}</Text>
-		<Text>{event.date}</Text>
-		<TouchableOpacity style={styles.button1}>
-			<Text style={styles.RegisterText}>Register</Text>
-		</TouchableOpacity>
-		</Card>)}
-		</ScrollView>
-
-		<Text style={styles.HeaderNearYou}>
-			Suggested
-		</Text>
-
-		<ScrollView
-		horizontal={true}
-		>
-
-		{data?.reverse().map(event=><Card style={styles.card1}>
-		<Text style={styles.setFontSizeThree}>{event.eventname}</Text>
-		<Text>{event.eventaddress}</Text>
-		<Text>{event.city}</Text>
-		<Text>{event.state}</Text>
-		<Text>{event.description}</Text>
-		<Text>{event.date}</Text>
-		<TouchableOpacity style={styles.button1}>
-			<Text style={styles.RegisterText}>Register</Text>
-		</TouchableOpacity>
-		</Card>)}
-
-		<Image source={{uri: 'https://images.pexels.com/photos/46274/pexels-photo-46274.jpeg?cs=srgb&dl=pexels-caio-46274.jpg&fm=jpg'}}/>
-
-		</ScrollView>
-
-		
+    <View style={{ backgroundColor: "white", height: "100%" }}>
+      <SafeAreaView>
+        <ScrollView vertical={true}>
+          <Home style={styles.eventFeedPage} />
+          <Text style={styles.HeaderNearYou}>Near You</Text>
+          <ScrollView horizontal={true}>
+            {data?.reverse().map((event) => (
+              <Card style={styles.card1} key={event.id}>
+                <Image
+                  source={{
+                    uri: "https://media.istockphoto.com/id/511061090/photo/business-office-building-in-london-england.jpg?s=612x612&w=0&k=20&c=nYAn4JKoCqO1hMTjZiND1PAIWoABuy1BwH1MhaEoG6w=",
+                  }}
+                  style={styles.image}
+                />
+                <View style={{ padding: 10 }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={styles.setFontSizeThree}>
+                      {event.eventname}
+                    </Text>
+                  </View>
+                  <Text style={styles.address}>
+                    {event.eventaddress + " " + event.city + ", " + event.state}
+                  </Text>
+                  <Text style={styles.description}>{event.description}</Text>
+                </View>
+                <View>
+                  <TouchableOpacity
+                    style={styles.button1}
+                    onPress={() => registerButton(event)}
+                  >
+                    <Text style={styles.RegisterText}>Register</Text>
+                  </TouchableOpacity>
+                </View>
+              </Card>
+            ))}
+          </ScrollView>
+          <Text style={styles.HeaderNearYou}>Suggested</Text>
+          <ScrollView horizontal={true}>
+            {data?.reverse().map((event) => (
+              <Card style={styles.card1} key={event.id}>
+                <Image
+                  source={{
+                    uri: "https://media.istockphoto.com/id/511061090/photo/business-office-building-in-london-england.jpg?s=612x612&w=0&k=20&c=nYAn4JKoCqO1hMTjZiND1PAIWoABuy1BwH1MhaEoG6w=",
+                  }}
+                  style={styles.image}
+                />
+                <View style={{ padding: 10 }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={styles.setFontSizeThree}>
+                      {event.eventname}
+                    </Text>
+                  </View>
+                  <Text style={styles.address}>
+                    {event.eventaddress + " " + event.city + ", " + event.state}
+                  </Text>
+                  <Text style={styles.description}>{event.description}</Text>
+                </View>
+                <View>
+                  <TouchableOpacity
+                    style={styles.button1}
+                    onPress={() => registerButton(event)}
+                  >
+                    <Text style={styles.RegisterText}>Register</Text>
+                  </TouchableOpacity>
+                </View>
+              </Card>
+            ))}
+          </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
+      {/* Modal */}
+      <Modal
+        visible={isModalVisible}
+        animationType="slide"
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalContent}>
+          <Text style={styles.modalTitle}>
+            {selectedEvent?.eventname}
+          </Text>
+          {/* Display additional event details */}
+          <Text>{selectedEvent?.eventaddress}</Text>
+          <Text>{selectedEvent?.description}</Text>
+          <Button title="Close Modal" onPress={closeModal} />
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -92,25 +138,45 @@ export default function EventFeed() {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
-    flex: -1,
-    justifyContent: "center",
-    alignItems: "center",
+    // flex: -1,
+    // justifyContent: "center",
+    // alignItems: "center",
+    // width: "100%",
+    // height: "100%",
+  },
+  image: {
+    width: 230,
+    height: 130,
+    margin: 0,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+  },
+  address: {
+    color: "gray",
+  },
+  description: {
+    fontSize: 10,
   },
   card1: {
     margin: 20,
     fontSize: 25,
-    height: 155,
-    width: 350,
-  },
-  button: {
-    justifyContent: "flex-start",
+    height: 250,
+    width: 230,
+    backgroundColor: "white",
+    shadowColor: "#000", // Shadow color
+    shadowOffset: { width: 0, height: 2 }, // Shadow offset
+    shadowOpacity: 0.25, // Shadow opacity
+    shadowRadius: 3.84, // Shadow blur radius
+    elevation: 5, // For Android shadow
+    marginBottom: 100,
   },
   setFontSizeTwo: {
     fontSize: 20,
   },
   setFontSizeThree: {
-    fontSize: 20,
-	marginHorizontal: 60
+    fontSize: 15,
+    fontWeight: "bold",
+    textAlign: "left",
   },
   setFontSizeFour: {
     fontSize: 40,
@@ -121,27 +187,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  title:{
-	margin: 10
+  title: {
+    margin: 10,
   },
   ScrollView1: {
-	alwaysBounceHorizontal: true
+    alwaysBounceHorizontal: true,
   },
-  button1:{
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    backgroundColor: 'blue',
-    width:200,
-	marginLeft: 70,
-	borderRadius: 50
+  button1: {
+    backgroundColor: "#3570F9",
+    width: 150,
+    height: 25,
+    borderRadius: 50,
+    left: 40,
+    justifyContent: "center",
   },
-  RegisterText:{
-	color: white,
-	marginLeft: 40
+  RegisterText: {
+    color: white,
+    textAlign: "center",
   },
-  HeaderNearYou:{
-	fontSize: 20,
-	marginLeft: 20,
-	marginTop: -20
+  HeaderNearYou: {
+    fontSize: 25,
+    marginLeft: 20,
+  },
+  eventFeedPage: {
+    width: "100%",
+    height: "100%",
+  },
+  modalContent:{
+    top:"50%"
   }
 });
